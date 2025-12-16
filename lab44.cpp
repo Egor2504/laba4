@@ -1,20 +1,39 @@
-﻿// lab44.cpp : Этот файл содержит функцию "main". Здесь начинается и заканчивается выполнение программы.
-//
+﻿#include <iostream>
+#include <vector>
+#include <string>
+#include <fstream>
 
-#include <iostream>
+using namespace std;
 
-int main()
-{
-    std::cout << "Hello World!\n";
+vector<string> readFile(string filename) {
+    vector<string> lines;
+    ifstream file(filename);
+    string line;
+
+    if (file.is_open()) {
+        while (getline(file, line)) {
+            lines.push_back(line);
+        }
+        file.close();
+        cout << "Read " << lines.size() << " lines from file" << endl;
+    }
+
+    return lines;
 }
 
-// Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
-// Отладка программы: F5 или меню "Отладка" > "Запустить отладку"
+void printLines(vector<string> lines) {
+    cout << "Printing to screen" << endl;
+}
 
-// Советы по началу работы 
-//   1. В окне обозревателя решений можно добавлять файлы и управлять ими.
-//   2. В окне Team Explorer можно подключиться к системе управления версиями.
-//   3. В окне "Выходные данные" можно просматривать выходные данные сборки и другие сообщения.
-//   4. В окне "Список ошибок" можно просматривать ошибки.
-//   5. Последовательно выберите пункты меню "Проект" > "Добавить новый элемент", чтобы создать файлы кода, или "Проект" > "Добавить существующий элемент", чтобы добавить в проект существующие файлы кода.
-//   6. Чтобы снова открыть этот проект позже, выберите пункты меню "Файл" > "Открыть" > "Проект" и выберите SLN-файл.
+void writeFile(vector<string> lines, string filename) {
+    cout << "Writing to file: " << filename << endl;
+}
+
+int main() {
+    vector<string> lines = readFile("input.txt");
+    printLines(lines);
+    writeFile(lines, "output.txt");
+
+    cout << "Program finished!" << endl;
+    return 0;
+}
