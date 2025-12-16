@@ -25,4 +25,4 @@ void writeFile(vector<string> lines, string filename) {
     } else {
         cout << "Error creating file!" << endl;
     }
-}
+}// This file contains output functions
